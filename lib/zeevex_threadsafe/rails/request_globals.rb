@@ -1,5 +1,11 @@
 require_dependency "weakref"
 
+begin
+  require 'active_support/core_ext'
+rescue LoadError
+  require 'zeevex_threadsafe/aliasing'
+end
+
 module ZeevexThreadsafe
   module Rails
     class RequestGlobals
