@@ -1,5 +1,10 @@
 require 'thread'
-require 'active_support'
+
+begin
+  require 'active_support/core_ext'
+rescue LoadError
+  require 'zeevex_threadsafe/aliasing'
+end
 
 module ZeevexThreadsafe
   module ThreadSafer
