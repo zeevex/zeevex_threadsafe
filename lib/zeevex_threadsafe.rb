@@ -1,0 +1,3 @@
+module ZeevexThreadsafe
+  # Your code goes here...
+end
