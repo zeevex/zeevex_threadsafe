@@ -10,7 +10,7 @@ namespace :spec do
   desc "Run on three Rubies"
   task :platforms do
     current = %x{rvm-prompt v}
-    
+
     fail = false
     %w{1.8.7 1.9.2}.each do |version|
       puts "Switching to #{version}"
@@ -27,6 +27,11 @@ namespace :spec do
 
     exit (fail ? 1 : 0)
   end
+end
+
+
+task :repl do
+  sh %q{ bundle exec irb -Ilib -r zeevex_threadsafe/synchronized }
 end
 
 task :default => 'spec'
