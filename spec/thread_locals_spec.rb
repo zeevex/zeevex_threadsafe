@@ -104,11 +104,11 @@ describe ZeevexThreadsafe::ThreadLocals do
 
       [:private_var].each do |key|
         it "should have defined reader for #{key}" do
-          instance.private_methods.should include(key.to_s)
+          instance.private_methods.map(&:to_s).should include(key.to_s)
         end
 
         it "should have defined writer for #{key}" do
-          instance.private_methods.should include(key.to_s + "=")
+          instance.private_methods.map(&:to_s).should include(key.to_s + "=")
         end
       end
     end
@@ -146,19 +146,19 @@ describe ZeevexThreadsafe::ThreadLocals do
 
     context "visibility" do
       it "should define methods as public by default" do
-        instance.public_methods.should include("plain", "plain=", "mult1", "mult1=")
+        instance.public_methods.map(&:to_s).should include("plain", "plain=", "mult1", "mult1=")
       end
 
       it "should define methods as protected when :visibility => :protected" do
-        instance.protected_methods.should include("protected_var", "protected_var=")
+        instance.protected_methods.map(&:to_s).should include("protected_var", "protected_var=")
       end
 
       it "should define methods as private when :visibility => :private" do
-        instance.private_methods.should include("private_var", "private_var=")
+        instance.private_methods.map(&:to_s).should include("private_var", "private_var=")
       end
 
       it "should define methods as public when :visibility is not provided, even in a private context" do
-        instance.public_methods.should include("contextually_private_var", "contextually_private_var=")
+        instance.public_methods.map(&:to_s).should include("contextually_private_var", "contextually_private_var=")
       end
     end
 
@@ -248,11 +248,11 @@ describe ZeevexThreadsafe::ThreadLocals do
 
         [:private_var].each do |key|
           it "should have defined reader for #{key}" do
-            instance.private_methods.should include(key.to_s)
+            instance.private_methods.map(&:to_s).should include(key.to_s)
           end
 
           it "should have defined writer for #{key}" do
-            instance.private_methods.should include(key.to_s + "=")
+            instance.private_methods.map(&:to_s).should include(key.to_s + "=")
           end
         end
       end
@@ -292,19 +292,19 @@ describe ZeevexThreadsafe::ThreadLocals do
 
       context "visibility" do
         it "should define methods as public by default" do
-          instance.public_methods.should include("plain", "plain=", "mult1", "mult1=")
+          instance.public_methods.map(&:to_s).should include("plain", "plain=", "mult1", "mult1=")
         end
 
         it "should define methods as protected when :visibility => :protected" do
-          instance.protected_methods.should include("protected_var", "protected_var=")
+          instance.protected_methods.map(&:to_s).should include("protected_var", "protected_var=")
         end
 
         it "should define methods as private when :visibility => :private" do
-          instance.private_methods.should include("private_var", "private_var=")
+          instance.private_methods.map(&:to_s).should include("private_var", "private_var=")
         end
 
         it "should define methods as public when :visibility is not provided, even in a private context" do
-          instance.public_methods.should include("contextually_private_var", "contextually_private_var=")
+          instance.public_methods.map(&:to_s).should include("contextually_private_var", "contextually_private_var=")
         end
       end
 
